@@ -1,9 +1,17 @@
-def dfs(graph, node, visited=set()):
-    if node not in visited:
-        print(node, end=" ")
-        visited.add(node)
-        for neighbor in graph[node]:
-            dfs(graph, neighbor, visited)
+from collections import deque
+
+def dfs(graph, start_node):
+    visited = set()
+    stack = [start_node]
+    
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            print(node, end=" ")
+            visited.add(node)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    stack.append(neighbor)
 
 graph = {
     'A': ['B', 'C'],
